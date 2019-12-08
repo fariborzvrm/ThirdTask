@@ -1,5 +1,7 @@
 package com.example.thirdtask;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +10,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.viewHolder> {
+
+    ArrayList<String> myList;
+
+    RecyclerAdapter(ArrayList<String> list){
+
+          myList=list;
+    }
+
 
     @NonNull
     @Override
@@ -20,37 +32,26 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.viewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull viewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final viewHolder holder, int position) {
 
-        switch (position){
 
-            case 0:
-                holder.txtProfile.setText("Profile");
-                holder.txtProfile.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
 
-                    }
-                });
-                break;
+       final String name=myList.get(position);
+       holder.txtProfile.setText(name);
+       holder.txtProfile.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               Intent clickIntent=new Intent(view.getContext(),ProfileActivity.class);
+               view.getContext().startActivity(clickIntent);
 
-            case 1:
-                holder.txtProfile.setText("Dial");
-                holder.txtProfile.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                    }
-                });
-                break;
-
-        }
+           }
+       });
 
     }
 
     @Override
     public int getItemCount() {
-        return 2;
+        return myList.size();
     }
 
     class viewHolder extends RecyclerView.ViewHolder{
@@ -63,6 +64,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.viewHo
             txtProfile=itemView.findViewById(R.id.txtProfile);
         }
     }
+public interface onClickItemListener{
 
+        void onClickItemListener(int position);
+
+    }
 
 }
