@@ -10,11 +10,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-public class DialerActivity extends AppCompatActivity {
+public class DialerActivity extends PublicMethods {
 
     ImageView imgDial;
     EditText  edtPhoneNumber;
-    String phone;
+    String phone,phoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class DialerActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String phoneNumber=edtPhoneNumber.getText().toString();
+                phoneNumber=edtPhoneNumber.getText().toString();
 
                 PreferenceManager.getDefaultSharedPreferences(DialerActivity.this).edit().putString("phone",phoneNumber).apply();
 
