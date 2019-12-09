@@ -17,7 +17,7 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements RecyclerAdapter.onClickItemListener {
+public class MainActivity extends AppCompatActivity{
 
     Button btnDrawer;
     DrawerLayout drawerLayout;
@@ -64,9 +64,5 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.o
     }
 
 
-    @Override
-    public void onClickItemListener(int position) {
-        Intent clickIntent=new Intent(MainActivity.this,ProfileActivity.class);
-        startActivity(clickIntent);
-    }
+
 }

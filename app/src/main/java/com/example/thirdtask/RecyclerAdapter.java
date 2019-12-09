@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,14 +39,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.viewHo
 
        final String name=myList.get(position);
        holder.txtProfile.setText(name);
-       holder.txtProfile.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               Intent clickIntent=new Intent(view.getContext(),ProfileActivity.class);
-               view.getContext().startActivity(clickIntent);
 
-           }
-       });
 
     }
 
@@ -54,20 +48,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.viewHo
         return myList.size();
     }
 
-    class viewHolder extends RecyclerView.ViewHolder{
+   public static class viewHolder extends RecyclerView.ViewHolder  {
 
-          TextView txtProfile;
+          public TextView txtProfile;
+       View mView;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
-
             txtProfile=itemView.findViewById(R.id.txtProfile);
+            mView=itemView;
+        }
+
+
+
+
         }
     }
-public interface onClickItemListener{
 
-        void onClickItemListener(int position);
 
-    }
 
-}

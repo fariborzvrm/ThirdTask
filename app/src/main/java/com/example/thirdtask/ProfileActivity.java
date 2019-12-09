@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,23 +22,6 @@ public class ProfileActivity extends PublicMethods {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
-        name=   PreferenceManager.getDefaultSharedPreferences(mContext).getString("edtName","");
-        edtName=findViewById(R.id.edtName);
-        edtName.setText(name);
-
-        family= PreferenceManager.getDefaultSharedPreferences(mContext).getString("edtFamily","");
-        edtFamily=findViewById(R.id.edtFamily);
-        edtFamily.setText(family);
-
-        age=    PreferenceManager.getDefaultSharedPreferences(mContext).getString("edtAge","");
-        edtAge=findViewById(R.id.edtAge);
-        edtAge.setText(age);
-
-        address=PreferenceManager.getDefaultSharedPreferences(mContext).getString("edtAddress","");
-        edtAddress=findViewById(R.id.edtAddress);
-        edtAddress.setText(address);
-
 
         save();
     }
@@ -60,15 +44,14 @@ public class ProfileActivity extends PublicMethods {
                  age = edtAge.getText().toString();
                  address = edtAddress.getText().toString();
 
-                 PreferenceManager.getDefaultSharedPreferences(mContext).edit().putString("name",name).apply();
-                PreferenceManager.getDefaultSharedPreferences(mContext).edit().putString("family",family).apply();
-                PreferenceManager.getDefaultSharedPreferences(mContext).edit().putString("age",age).apply();
-                PreferenceManager.getDefaultSharedPreferences(mContext).edit().putString("address",address).apply();
+                Intent profileIntent = new Intent(mContext,ProfileForResultActivity.class);
 
+                profileIntent.putExtra("name",name);
+                profileIntent.putExtra("family",family);
+                profileIntent.putExtra("age",age);
+                profileIntent.putExtra("address",address);
 
-
-
-                myToast(name);
+                startActivity(profileIntent);
 
 
 
