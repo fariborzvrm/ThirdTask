@@ -1,7 +1,6 @@
 package com.example.thirdtask;
 
-public interface ClickListener {
+public interface onItemclicked {
 
-    void onPositionClicked(int position);
-
+    void onItemClick(int position);
 }

@@ -7,6 +7,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -17,11 +18,12 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener , onItemclicked {
 
     Button btnDrawer;
     DrawerLayout drawerLayout;
     RecyclerView recycler;
+    Context mContext=MainActivity.this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,5 +66,22 @@ public class MainActivity extends AppCompatActivity{
     }
 
 
+    @Override
+    public void onClick(View view) {
 
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        switch (position){
+            case 0:
+                Intent profileActivity = new Intent(mContext,ProfileActivity.class);
+                startActivity(profileActivity);
+
+            case 1:
+                Intent dialActivity = new Intent(mContext,DialerActivity.class);
+                startActivity(dialActivity);
+
+        }
+    }
 }
